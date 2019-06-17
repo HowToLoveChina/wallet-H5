@@ -14,7 +14,7 @@
                    </div>
                    <div style="margin-top:15px;">{{$t('Home.wxp')}}</div>
                </div>
-               <div class="card-list">
+               <div class="card-list" @click="picChange">
                    <div class="list-img purple">
                        <img src="../assets/icon-img.png" class="img">
                    </div>
@@ -38,6 +38,10 @@ export default {
   methods: {
     cancelChange () {
       this.$emit('cancel')
+    },
+    //  生成美图
+    picChange () {
+      this.$emit('picChange')
     }
   }
 }
