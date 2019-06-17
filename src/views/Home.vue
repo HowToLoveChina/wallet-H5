@@ -1,7 +1,10 @@
 <template>
     <div class="home-container">
         <!--首页分享好友-->
-        <share v-if="shareStatus" @cancel="closeChange"></share>
+        <share v-if="shareStatus"
+               @cancel="closeChange"
+               @picChange="picChange"
+        ></share>
         <!--身份认证-->
         <not-invite v-if="notInviteStatus" @cancel="closeChange2"></not-invite>
         <!--添加钱包-->
@@ -133,6 +136,10 @@ export default {
     // 关闭实名认证界面
     closeChange2 () {
       this.notInviteStatus = false
+    },
+    // 生成美图
+    picChange () {
+      this.$router.push('/pic')
     }
   }
 }
