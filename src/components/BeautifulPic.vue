@@ -26,9 +26,7 @@
                </div>
            </div>
        </div>
-      <share-pic v-if="picStatus" @picChange="downLoad" :imgSrc="imgUrl"></share-pic>
-<!--      <el-button @click="clickGeneratePicture" style="width:100px;">点击</el-button>-->
-<!--      <img :src="imgUrl" style="width:500px;height:600px;">-->
+      <share-pic v-if="picStatus" @picChange="downLoad" @cancel="closeChange" :imgSrc="imgUrl"></share-pic>
    </div>
 </template>
 
@@ -54,11 +52,11 @@ export default {
   },
   methods: {
     clickGeneratePicture () {
-      let shareContent = this.$refs.imageDom,
-        width = shareContent.clientWidth,
-        height = shareContent.clientHeight,
-        canvas = document.createElement('canvas'),
-        scale = 2
+      let shareContent = this.$refs.imageDom
+      let width = shareContent.clientWidth
+      let height = shareContent.clientHeight
+      let canvas = document.createElement('canvas')
+      let scale = 2
       canvas.width = width * scale
       canvas.height = height * scale
       canvas.style.width = shareContent.clientWidth * scale + 'px'
@@ -80,6 +78,9 @@ export default {
     },
     downLoad () {
       this.clickGeneratePicture()
+    },
+    closeChange () {
+      this.picStatus = false
     }
   }
 }
@@ -101,18 +102,18 @@ export default {
         background-image: url('../assets/banner.png');
         background-repeat: no-repeat;
         background-size:100%;
-        padding:20px 16px 0 16px;
+        padding:40px 32px 0 32px;
         .top-logo{
             display: flex;
             flex-direction: row;
             justify-content: flex-start;
             align-items: center;
             .logo-img{
-                width:30px;
-                height:30px;
+                width:60px;
+                height:60px;
             }
             .logo-text{
-                font-size:15px;
+                font-size:30px;
                 color:#fff;
                 padding-left:10px;
             }
@@ -123,9 +124,9 @@ export default {
             justify-content: center;
             align-items: center;
             color:#fff;
-            font-size:30px;
+            font-size:60px;
             font-weight: bold;
-            margin-top:45px;
+            margin-top:80px;
         }
     }
     .pic-body{
@@ -133,22 +134,22 @@ export default {
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        padding:25px 0px;
+        padding:50px 0px;
         position: absolute;
         top:680px;
         left:50px;
         width:650px;
         background-color: #fff;
-        box-shadow:0px 1px 4px 0px rgba(77,81,198,1);
+        box-shadow:0px 2px 4px 0px rgba(77,81,198,1);
         border-bottom-left-radius: 10px;
         border-bottom-right-radius: 10px;
         .body-text{
             display: flex;
             flex-direction: row;
             color:#444;
-            font-size:15px;
+            font-size:30px;
             .user{
-                font-size:15px;
+                font-size:30px;
                 color:#4D51C6;
             }
         }
@@ -160,13 +161,13 @@ export default {
             border-radius:8px;
             border:1px solid rgba(77,81,198,1);
             padding:4px;
-            margin-top:26px;
+            margin-top:52px;
             position: relative;
             .cards{
-                padding:10px;
+                padding:20px;
                 background-color: #4D51C6;
                 color:#fff;
-                font-size:28px;
+                font-size:56px;
                 border-radius: 8px;
             }
             .icon-card{
@@ -178,31 +179,30 @@ export default {
                 color:#4D51C6;
                 font-size:10px;
                 position: absolute;
-                top:-10px;
-                left:55px;
+                top:-15px;
+                left:130px;
                 background-color: #fff;
-                border-radius:5px;
+                border-radius:10px;
                 border:1px solid rgba(77,81,198,1);
-                width:42px;
             }
 
         }
         .card-qr{
-            width:90px;
-            height:90px;
-            margin-top:25px;
+            width:180px;
+            height:180px;
+            margin-top:50px;
         }
         .body-bottom{
             display: flex;
             flex-direction: row;
             justify-content: space-around;
             align-items: center;
-            margin-top:10px;
+            margin-top:40px;
             color:#7B7C81;
             font-size:10px;
             .bottom-color{
-                width:27px;
-                height:1px;
+                width:54px;
+                height:2px;
                 background-color: #DCDCE4;
             }
         }

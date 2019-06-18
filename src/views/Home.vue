@@ -43,7 +43,7 @@
             <div class="card-btn" @click="shareChange">{{$t('Home.invite')}}</div>
         </div>
         <div class="home-bottom">
-            <div class="bottom-title">{{$t('Home.myInvite')}}</div>
+            <div class="bottom-title" @click="jumpToInvite">{{$t('Home.myInvite')}}</div>
             <div class="bottom-person">
               <div class="person-title">
                   <span>{{$t('Home.personNum')}}</span>
@@ -155,10 +155,10 @@ export default {
             align-items: center;
             background-color: #4E52C7;
             color:#fff;
-            padding:10px 16px;
+            padding:20px 32px;
             .title-img{
-                width:13px;
-                height:21px;
+                width:26px;
+                height:42px;
             }
             .title-right{
                 display: flex;
@@ -166,13 +166,13 @@ export default {
                 flex:1;
                 justify-content: space-between;
                 align-items: center;
-                margin-left:40%;
+                margin-left:38%;
                 .right-span1{
-                    font-size:17px;
-                    font-weight: bold;
+                    font-size:30px;
+
                 }
                 .right-span2{
-                    font-size:14px;
+                    font-size:25px;
                     cursor: pointer;
                 }
             }
@@ -180,7 +180,7 @@ export default {
         .home-body{
             display: flex;
             flex-direction: column;
-            padding:25px 16px 55px 16px;
+            padding:50px 32px 110px 32px;
             background-color: #4E52C7;
             .body-list{
                 display: flex;
@@ -189,10 +189,10 @@ export default {
                 align-items: center;
                 color:#fff;
                 .span1{
-                    font-size:14px;
+                    font-size:28px;
                 }
                 .span2{
-                    font-size:32px;
+                    font-size:64px;
                     font-weight: bold;
                 }
                 .list-btn{
@@ -203,13 +203,13 @@ export default {
                     width:80px;
                     height:30px;
                     border-radius:6px;
-                    border:1px solid #fff;
+                    border:2px solid #fff;
                     padding:5px 16px;
                     cursor: pointer;
-                    font-size:14px;
+                    font-size:20px;
                     .btn-img{
-                        width:20px;
-                        height:20px;
+                        width:24px;
+                        height:28px;
                     }
                     .img-span{
                         padding-left:7px;
@@ -223,7 +223,7 @@ export default {
                 display: flex;
                 flex-direction: row;
                 justify-content: flex-start;
-                font-size:12px;
+                font-size:24px;
                 color:#fff;
                 margin-top:10px;
                 margin-bottom:25px;
@@ -234,17 +234,16 @@ export default {
             flex-direction: row;
             justify-content: space-between;
             align-items: center;
-            margin:-60px 16px 0 16px;
-            padding:25px 15px;
+            margin:-60px 32px 0 32px;
+            padding:32px 30px;
             background-color: #fff;
             box-shadow:0px 2px 15px 2px rgba(78,82,199,0.15);
-            border-top-left-radius:10px;
-            border-top-right-radius:10px;
+            border-radius: 10px;
             .card-span{
-                font-size:14px;
+                font-size:28px;
                 color:#444;
                 .card-code{
-                    font-size:20px;
+                    font-size:40px;
                     color:#4D51C6;
                     font-weight: bold;
                 }
@@ -260,27 +259,27 @@ export default {
                 border-radius:6px;
                 background-color: #4D51C6;
                 color:#fff;
-                font-size:14px;
+                font-size:20px;
                 cursor: pointer;
             }
         }
         .home-bottom{
             display: flex;
             flex-direction: column;
-            padding:35px 16px 25px 16px;
+            padding:70px 32px 50px 32px;
             .bottom-title{
                 display: flex;
                 flex-direction: row;
                 justify-content: flex-start;
-                font-size:20px;
+                font-size:40px;
                 color:#444;
                 font-weight: bold;
             }
             .bottom-person{
                 display: flex;
                 flex-direction: column;
-                margin-top:25px;
-                padding:15px 0 17px 0;
+                margin-top:50px;
+                padding:30px 0 34px 0;
                 box-shadow:0px 2px 15px 2px rgba(78,82,199,0.15);
                 border-radius:10px;
                 .person-title{
@@ -288,7 +287,7 @@ export default {
                     flex-direction: row;
                     justify-content:space-around;
                     align-items: center;
-                    font-size:12px;
+                    font-size:24px;
                     color:#7B7C81;
                 }
                 .person-body{
@@ -296,17 +295,17 @@ export default {
                     flex-direction: row;
                     justify-content:space-around;
                     align-items: center;
-                    font-size:15px;
+                    font-size:30px;
                     font-weight: bold;
                     color:#4D51C6;
-                    margin-top:12px;
+                    margin-top:24px;
                 }
             }
             .bottom-table{
                 display: flex;
                 flex-direction: column;
-                margin-top:12px;
-                padding:15px 0 20px 0;
+                margin-top:24px;
+                padding:30px 0 40px 0;
                 box-shadow:0px 2px 15px 2px rgba(78,82,199,0.15);
                 border-radius:10px;
                 .table-title{
@@ -315,7 +314,7 @@ export default {
                     justify-content: space-around;
                     align-items: center;
                     color:#7B7C81;
-                    font-size:12px;
+                    font-size:24px;
                 }
                 .table-list{
                     display: flex;
@@ -323,10 +322,10 @@ export default {
                     justify-content: space-around;
                     align-items: center;
                     color:#444;
-                    font-size:14px;
-                    margin-top:20px;
+                    font-size:28px;
+                    margin-top:40px;
                     .span1{
-                        padding-right:30px;
+                        padding-right:50px;
                     }
                 }
             }

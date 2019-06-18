@@ -39,22 +39,21 @@ export default {
     .desc-container{
         display: flex;
         flex-direction: column;
-        padding:0 16px;
+        padding:0 32px;
         .desc-title{
             display: flex;
             flex-direction: row;
             justify-content: flex-start;
             align-items: center;
-            padding:10px 0;
+            padding:20px 0;
             .title-img{
-                width:13px;
-                height:22px;
+                width:26px;
+                height:44px;
             }
             .desc-span{
                 color:#444;
-                font-size:17px;
-                font-weight: bold;
-                padding-left:40%;
+                font-size:34px;
+                padding-left:38%;
             }
         }
         .desc-top{
@@ -62,16 +61,16 @@ export default {
             flex-direction: column;
             justify-content: flex-start;
             align-items: flex-start;
-            margin-top:25px;
+            margin-top:50px;
             .top-title{
-                font-size:20px;
+                font-size:40px;
                 font-weight: bold;
                 color:#444;
             }
             .top-text{
                 color:#444;
-                font-size:14px;
-                margin-top:25px;
+                font-size:28px;
+                margin-top:50px;
             }
         }
         .desc-body{
@@ -79,9 +78,9 @@ export default {
             flex-direction: column;
             justify-content: flex-start;
             align-items: flex-start;
-            margin-top:35px;
+            margin-top:70px;
             .body-title{
-                font-size:20px;
+                font-size:40px;
                 font-weight: bold;
                 color:#444;
             }
@@ -90,9 +89,9 @@ export default {
                 flex-direction: column;
                 justify-content: flex-start;
                 align-items: flex-start;
-                margin-top:25px;
+                margin-top:50px;
                 text-align: left;
-                font-size:14px;
+                font-size:28px;
                 color:#444;
                 .list-text{
                     width:100%

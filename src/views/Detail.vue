@@ -50,22 +50,21 @@ export default {
     .detail-container{
         display: flex;
         flex-direction: column;
-        padding:0 16px;
+        padding:0 32px;
         .detail-title{
             display: flex;
             flex-direction: row;
             justify-content: flex-start;
             align-items: center;
-            padding:10px 0;
+            padding:20px 0;
             .title-img{
-                width:13px;
-                height:22px;
+                width:26px;
+                height:44px;
             }
             .title-span{
                 color:#444;
-                font-size:17px;
-                font-weight: bold;
-                padding-left:45%;
+                font-size:34px;
+                padding-left:40%;
             }
         }
         .detail-card{
@@ -73,20 +72,20 @@ export default {
             flex-direction: row;
             justify-content: center;
             align-items: center;
-            padding:10px;
+            padding:20px;
             border-radius:8px;
             background-color: #F8B039;
-            margin:25px 70px 0 70px;
+            margin:50px 140px 0 140px;
             color:#fff;
-            font-size:15px;
+            font-size:28px;
         }
         .detail-list{
             display: flex;
             flex-direction: row;
             justify-content: space-between;
             align-items: center;
-            margin-top:28px;
-            padding:14px 16px;
+            margin-top:56px;
+            padding:28px 32px;
             .list-right{
                 display: flex;
                 flex-direction: column;
@@ -94,17 +93,17 @@ export default {
                 align-items: flex-start;
                 .right-text{
                     color:#444;
-                    font-size:14px;
+                    font-size:28px;
                     font-weight: bold;
                 }
                 .right-time{
                     color:#AFB0B9;
-                    font-size:12px;
-                    padding-top:5px;
+                    font-size:24px;
+                    padding-top:10px;
                 }
             }
             .list-left{
-                font-size:15px;
+                font-size:30px;
                 font-weight: bold;
                 .blue{
                   color:#4D51C6;

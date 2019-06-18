@@ -1,6 +1,6 @@
 <template>
     <el-scrollbar style="background-color: #4D51C6">
-        <div class="invite-container">
+        <div class="invite2-container">
             <div class="invite-top">
                 <div class="logo">
                     <div class="top-logo">
@@ -56,19 +56,19 @@
                             </div>
                             <!--手机号-->
                             <div class="phone-input" v-if="barMail">
-                                <el-input v-model="form.areaCode" style="width:150px;"></el-input>
+                                <el-input v-model="form.areaCode" style="width:120px;"></el-input>
                                 <div class="input-color"></div>
                                 <el-input v-model="form.phone" :placeholder="$t('invite.phone')"></el-input>
                             </div>
                             <!--邮箱验证码-->
                             <div class="phone-input margin" v-if="barPhone">
-                                <el-input v-model="form.mailCode" :placeholder="$t('invite.emailCode')" style="width:750px"></el-input>
+                                <el-input v-model="form.mailCode" :placeholder="$t('invite.emailCode')" style="width:180px"></el-input>
                                 <div class="input-color"></div>
                                 <span class="input-text">{{$t('invite.getCode')}}</span>
                             </div>
                             <!--手机验证码-->
                             <div class="phone-input margin" v-if="barMail">
-                                <el-input v-model="form.phoneCode" :placeholder="$t('invite.phoneCode')" style="width:750px"></el-input>
+                                <el-input v-model="form.phoneCode" :placeholder="$t('invite.phoneCode')" style="width:180px"></el-input>
                                 <div class="input-color"></div>
                                 <span class="input-text">{{$t('invite.getCode')}}</span>
                             </div>
@@ -115,7 +115,7 @@
             <div class="app-body">
                 <div class="app-left">
                     <img src="../assets/icon-app.png" class="left-img">
-                    <span style="padding-left:10px;">True</span>
+                    <span style="padding-left:10px;padding-top:15px;">True</span>
                 </div>
                 <div class="app-btn">{{$t('invite.app')}}</div>
             </div>
@@ -181,7 +181,7 @@ export default {
         border-bottom-width: 0px !important;
         /*outline: medium;*/
     }
-  .invite-container{
+  .invite2-container{
       display: flex;
       flex-direction: column;
       background-color: #4D51C6;
@@ -195,7 +195,7 @@ export default {
           background-image: url('../assets/banner.png');
           background-repeat: no-repeat;
           background-size:100%;
-          padding:20px 16px 0 16px;
+          padding:40px 32px 0 32px;
           .logo{
               display: flex;
               flex-direction: row;
@@ -207,24 +207,24 @@ export default {
                   justify-content: flex-start;
                   align-items: center;
                   .logo-right{
-                      width:50px;
-                      height:50px;
+                      width:100px;
+                      height:100px;
                   }
                   .logo-left{
                       display: flex;
                       flex-direction: column;
                       justify-content: flex-start;
                       align-items: flex-start;
-                      margin-left:10px;
+                      margin-left:20px;
                       .left-title{
-                          font-size:20px;
+                          font-size:40px;
                           color:#fff;
                           font-weight: bold;
                       }
                       .left-text{
-                          font-size:14px;
+                          font-size:28px;
                           color:#fff;
-                          padding-top:3px;
+                          padding-top:6px;
                       }
                   }
               }
@@ -233,17 +233,16 @@ export default {
                   flex-direction: row;
                   justify-content: center;
                   align-items: center;
-                  width:88px;
-                  height:30px;
-                  border-radius:6px;
-                  border:1px solid rgba(255,255,255,1);
-                  padding:7px 0;
-                  font-size:12px;
+                  /*width:88px;*/
+                  /*height:30px;*/
+                  border-radius:12px;
+                  border:2px solid rgba(255,255,255,1);
+                  padding:14px 14px;
+                  font-size:24px;
                   color:#fff;
-                  font-weight: bold;
                   .btn-img{
-                      width:14px;
-                      height:14px;
+                      width:28px;
+                      height:28px;
                   }
               }
           }
@@ -252,43 +251,44 @@ export default {
               flex-direction: column;
               justify-content: center;
               align-items: center;
-              margin-top:42px;
+              margin-top:84px;
               color:#fff;
-              font-size:30px;
+              font-size:60px;
               font-weight: bold;
           }
       }
       .invite-body{
           display: flex;
           flex-direction: column;
-          padding:25px 0px;
+          padding:50px 0px;
           /*margin:0 17px 0 17px;*/
           position: absolute;
           top:680px;
-          left:45px;
+          left:50px;
+          width:650px;
           background-color: #fff;
-          box-shadow:0px 1px 4px 0px rgba(77,81,198,1);
-          border-bottom-left-radius: 10px;
-          border-bottom-right-radius: 10px;
+          box-shadow:0px 2px 4px 0px rgba(77,81,198,1);
+          border-bottom-left-radius: 20px;
+          border-bottom-right-radius: 20px;
           .form-text{
               display: flex;
               flex-direction: row;
               justify-content: center;
               align-items: center;
               color:#444;
-              font-size:14px;
+              font-size:24px;
               .text-blue{
                   color:#4D51C6;
               }
               .text{
-                  padding-left:2px;
+                  padding-left:4px;
               }
           }
           .form-body{
               display: flex;
               flex-direction: column;
-              margin-top:25px;
-              padding:0 30px;
+              margin-top:50px;
+              padding:0 60px;
               .body-bar{
                   display: flex;
                   flex-direction: row;
@@ -301,14 +301,14 @@ export default {
                       justify-content: center;
                       align-items: center;
                       color:#444;
-                      font-size:15px;
+                      font-size:30px;
                       font-weight: bold;
                       .list-blue{
-                          width:60px;
-                          height:2px;
+                          width:120px;
+                          height:4px;
                           background:#4D51C6;
                           border-radius:2px;
-                          margin-top:8px;
+                          margin-top:16px;
                       }
                       .blue{
                           color:#4D51C6;
@@ -321,14 +321,14 @@ export default {
               .bar-phone{
                   display: flex;
                   flex-direction: column;
-                  margin-top:20px;
+                  margin-top:40px;
                   .phone-input{
                       display: flex;
                       flex-direction: row;
                       justify-content: flex-start;
                       align-items: center;
-                      padding:11px 10px;
-                      border-radius:10px;
+                      padding:22px 20px;
+                      border-radius:20px;
                       border:2px solid rgba(220,220,228,1);
                       .input-color{
                           width:2px;
@@ -337,25 +337,25 @@ export default {
                       }
                       .input-text{
                           color:#444;
-                          font-size:14px;
-                          padding-left:10px;
+                          font-size:24px;
+                          padding-left:20px;
                       }
                   }
                   .margin{
-                      margin-top:10px;
+                      margin-top:20px;
                   }
                   .form-btn{
                       display: flex;
                       flex-direction: column;
                       justify-content: center;
                       align-items: center;
-                      margin-top:25px;
+                      margin-top:50px;
                       background:rgba(77,81,198,1);
-                      border-radius:10px;
+                      border-radius:20px;
                       color:#fff;
-                      font-size:14px;
+                      font-size:28px;
                       font-weight: bold;
-                      padding:12px 0;
+                      padding:24px 0;
                       cursor: pointer;
                   }
               }
@@ -364,9 +364,9 @@ export default {
                   flex-direction: row;
                   justify-content: center;
                   align-items: center;
-                  margin-top:10px;
+                  margin-top:20px;
                   color:#AFB0B9;
-                  font-size:12px;
+                  font-size:24px;
                   font-weight: bold;
                   .text-blue{
                       color:#4D51C6;
@@ -378,27 +378,31 @@ export default {
   .invite-bottom{
         display: flex;
         flex-direction: column;
-        margin-top:40px;
+        margin-top:350px;
         justify-content: center;
         align-items: center;
         padding-bottom:50px;
+        .title-img{
+            width:350px;
+            height:90px;
+        }
         .bottom-list{
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            margin-top:36px;
+            margin-top:72px;
             color:#fff;
             .list-img{
-                width:66px;
-                height:77px;
+                width:132px;
+                height:154px;
             }
             .list-text1{
-                font-size:17px;
+                font-size:34px;
                 font-weight: bold;
             }
             .list-text2{
-                font-size:14px;
+                font-size:28px;
                 padding-top:10px;
             }
         }
@@ -412,11 +416,11 @@ export default {
           flex-direction: row;
           justify-content: flex-end;
           align-content: center;
-          padding-top:5px;
-          padding-right:5px;
+          padding-top:10px;
+          padding-right:10px;
           .close-img{
-              width:20px;
-              height:20px;
+              width:40px;
+              height:40px;
               cursor: pointer;
           }
       }
@@ -425,18 +429,18 @@ export default {
           flex-direction: row;
           justify-content: space-between;
           align-content: center;
-          padding:23px 15px;
+          padding:20px 30px 46px 30px;
           .app-left{
               display: flex;
               flex-direction: row;
-              justify-content: flex-start;
+              justify-content: center;
               align-content: center;
+              color:#4D51C6;
+              font-size:30px;
               .left-img{
-                  width:50px;
-                  height:50px;
+                  width:100px;
+                  height:100px;
                   border-radius:10px;
-                  color:#4D51C6;
-                  font-size:15px;
               }
           }
           .app-btn{
@@ -444,13 +448,12 @@ export default {
               flex-direction: column;
               justify-content: center;
               align-items: center;
-              padding:7px 0;
-              width:92px;
-              height:34px;
-              border-radius:6px;
-              border:1px solid rgba(77,81,198,1);
+              padding:7px 30px;
+              /*width:92px;*/
+              border-radius:16px;
+              border:2px solid rgba(77,81,198,1);
               color:#4D51C6;
-              font-size:15px;
+              font-size:30px;
               cursor: pointer;
           }
       }

@@ -56,42 +56,42 @@ export default {
       flex:auto;
       align-items: stretch;
       height:100vh;
-      padding:0 16px;
+      padding:0 32px;
       justify-content: space-between;
       .withdraw-title{
           display: flex;
           flex-direction: row;
           justify-content: flex-start;
           align-items: center;
-          padding:10px 0;
+          padding:20px 0;
           .title-img{
-              width:13px;
-              height:22px;
+              width:26px;
+              height:44px;
           }
           .title-span{
-              font-size:17px;
+              font-size:34px;
               color:#444;
-              font-weight: bold;
-              padding-left:45%;
+              padding-left:40%;
           }
       }
       .withdraw-body{
           display: flex;
           flex-direction: column;
-          margin-top:25px;
+          margin-top:50px;
           .body-input{
               display: flex;
               flex-direction: row;
               justify-content: space-between;
               align-items: center;
-              padding:15px 0;
-              border-bottom: 1px solid #eee;
+              padding:30px 0;
+              border-bottom: 2px solid #eee;
               .input{
                   width:300px;
                   outline:medium;
+                  font-size:30px;
               }
               .input-text{
-                  font-size:15px;
+                  font-size:30px;
                   color:#4D51C6;
               }
           }
@@ -100,22 +100,22 @@ export default {
               flex-direction: row;
               justify-content: flex-start;
               align-items: center;
-              margin-top:25px;
+              margin-top:50px;
               color:#444;
-              font-size:15px;
+              font-size:30px;
           }
           .body-btn{
               display: flex;
               flex-direction: row;
               justify-content: center;
               align-items: center;
-              margin-top:25px;
+              margin-top:50px;
               border-radius:10px;
               height:50px;
               color:#fff;
-              font-size:15px;
+              font-size:30px;
               font-weight: bold;
-              padding:15px 0;
+              padding:30px 0;
               background-color: #4D51C6;
               cursor: pointer;
           }
@@ -125,8 +125,8 @@ export default {
               justify-content: flex-end;
               align-items: center;
               color:#AFB0B9;
-              font-size:12px;
-              margin-top:15px;
+              font-size:24px;
+              margin-top:30px;
               .text-blue{
                   color:#4D51C6;
               }
@@ -139,15 +139,15 @@ export default {
           background:rgba(246,247,251,1);
           border-radius:10px;
           color:#7B7C81;
-          font-size:12px;
-          padding:15px 20px;
+          font-size:24px;
+          padding:30px 40px;
           text-align: left;
-          margin-bottom:20px;
+          margin-bottom:40px;
           .bottom-title{
             font-weight: bold;
           }
           .bottom-list{
-              margin-top:5px;
+              margin-top:10px;
           }
       }
   }

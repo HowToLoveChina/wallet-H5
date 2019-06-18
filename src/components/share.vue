@@ -63,12 +63,12 @@ export default {
     .share-card{
         display: flex;
         flex-direction: column;
-        height:189px;
+        height:240px;
         background:#fff;
-        padding:25px 0;
+        padding:50px 0 30px 0;
         position: absolute;
         width:100%;
-        top:85.5%;
+        top:78.5%;
         left:0;
         .lists{
             display: flex;
@@ -81,20 +81,20 @@ export default {
                 justify-content: center;
                 align-items: center;
                 color:#7B7C81;
-                font-size:14px;
+                font-size:24px;
                 cursor: pointer;
                 .list-img{
                     display: flex;
                     flex-direction: row;
                     justify-content: center;
                     align-items: center;
-                    padding:13px;
+                    padding:26px;
                     width:60px;
                     height:60px;
                     border-radius: 50%;
                     .img{
-                        width:35px;
-                        height:35px;
+                        width:60px;
+                        height:60px;
                     }
                 }
                 .green{
@@ -114,11 +114,12 @@ export default {
         flex-direction: row;
         justify-content: center;
         align-items: center;
-        margin-top:20px;
-        font-size:14px;
+        margin-top:40px;
+        font-size:24px;
         color:#7B7C81;
         font-weight: bold;
         cursor: pointer;
+        /*padding-bottom:30px;*/
        }
 }
 </style>
