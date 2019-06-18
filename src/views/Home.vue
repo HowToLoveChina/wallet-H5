@@ -4,6 +4,7 @@
         <share v-if="shareStatus"
                @cancel="closeChange"
                @picChange="picChange"
+               @shareWx="shareWxChange"
         ></share>
         <!--身份认证-->
         <not-invite v-if="notInviteStatus" @cancel="closeChange2"></not-invite>
@@ -86,6 +87,7 @@ import Share from '../components/share'
 import NotInvite from '../components/NotInvite'
 import NotAdd from '../components/NotAdd'
 import NotCopy from '../components/NotCopy'
+import wx from 'weixin-js-sdk'
 export default {
   name: 'InviteHome',
   components: {
@@ -100,7 +102,16 @@ export default {
       shareStatus: false,
       notInviteStatus: false, // 实名认证
       notCopy: false, // 未备份
-      notAddWallet: false // 未添加钱包
+      notAddWallet: false, // 未添加钱包
+      appId: '1', // 分享appId必填
+      signature: '21212', // 分享签名 必填
+      timestamp: '323', // 分享时间戳 必填
+      nonceStr: '434', // 分享随机串 必填
+      shareDetail: {
+        title: '这是测试',
+        desc: '这是测试',
+        coverUrl: '../assets/icon-logo'
+      }
     }
   },
   mounted () {
@@ -108,6 +119,30 @@ export default {
     console.log(this.phone)
   },
   methods: {
+    // 分享微信
+    shareWxChange () {
+      wx.config({
+        debug: true, // 开启调试模式
+        appId: this.appId, // 必填,公众号的唯一标识
+        timestamp: this.timestamp, // 必填,生成签名的时间戳
+        signature: this.signature, // 必填, 签名
+        nonceStr: this.nonceStr, // 必填, 生成签名的随机字符串
+        jsApiList: ['onMenuShareTimeline', 'onMenuShareAppMessage'] // 必填, 需要使用的JS接口列表
+      })
+
+      wx.onMenuShareAppMessage({
+        title: this.shareDetail.title,
+        desc: this.shareDetail.desc,
+        link: '',
+        imgUrl: this.shareDetail.coverUrl,
+        success: function () {
+          alert('分享成功')
+        },
+        cancel: function (e) {
+          console.log(e, '失败')
+        }
+      })
+    },
     // 跳转活动说明
     jumpToDesc () {
       this.$router.push('/description')

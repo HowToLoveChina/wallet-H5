@@ -2,7 +2,7 @@
     <div class="share-container">
        <div class="share-card">
            <div class="lists">
-               <div class="card-list">
+               <div class="card-list" @click="shareWx">
                    <div class="list-img green">
                        <img src="../assets/icon-wx.png" class="img">
                    </div>
@@ -42,6 +42,10 @@ export default {
     //  生成美图
     picChange () {
       this.$emit('picChange')
+    },
+    // 微信分享
+    shareWx () {
+      this.$emit('shareWx')
     }
   }
 }

@@ -1,7 +1,8 @@
 import axios from 'axios'
 import router from '@/router'
 
-let baseUrl = 'http://admin.truewallet.net/api/api2'
+// let baseUrl = 'http://admin.truewallet.net/api/api2'
+let baseUrl = 'http://api.truewallet.net/bvCode'
 axios.defaults.baseURL = baseUrl
 
 // 响应拦截器
@@ -35,17 +36,15 @@ axios.interceptors.response.use(
 )
 
 export default {
-  get (url, params, headers) {
+  get (url, params) {
     return axios({
-      headers: headers || null,
       method: 'get',
       params,
       url
     })
   },
-  post (url, data, headers) {
+  post (url, data) {
     return axios({
-      headers: headers || null,
       method: 'post',
       params: data,
       url

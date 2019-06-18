@@ -95,5 +95,9 @@
     "bottom": "立即扫码注册免费获取TRU",
     "user2": "邀请您免费获取数字资产TRUE",
     "download": "下载"
+  },
+  "vaptcha": {
+    "title": "安全验证",
+    "text": "拖动下方图形到指定位置"
   }
 }

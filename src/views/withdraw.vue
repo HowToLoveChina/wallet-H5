@@ -1,5 +1,7 @@
 <template>
   <div class="withdraw-container">
+      <!--图形验证-->
+      <Vaptcha v-if="vaptchaStatus" @close="closeChange"></Vaptcha>
       <div style="display: flex;flex-direction: column;">
           <div class="withdraw-title">
               <img src="../assets/icon-backBlack.png" class="title-img" @click="backChange">
@@ -7,7 +9,7 @@
           </div>
           <div class="withdraw-body">
               <div class="body-input">
-                  <el-input :placeholder="$t('withdraw.withdraw')" class="input"></el-input>
+                  <el-input :placeholder="$t('withdraw.withdraw')" class="input" v-model="Nums" type="number"></el-input>
                   <span class="input-text">{{$t('withdraw.balance')}} 10.00 {{$t('Home.True')}}</span>
               </div>
               <div class="body-address">
@@ -32,11 +34,27 @@
 </template>
 
 <script>
+import Vaptcha from '../components/vaptcha'
 export default {
   name: 'withdraw',
+  data () {
+    return {
+      Nums: '', // input
+      vaptchaStatus: false // 验证码
+    }
+  },
+  components: {
+    Vaptcha
+  },
+  mounted () {
+    this.vaptchaStatus = true
+  },
   methods: {
     backChange () {
       this.$router.go(-1)
+    },
+    closeChange () {
+      this.vaptchaStatus = false
     }
   }
 }
