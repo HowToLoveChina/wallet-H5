@@ -11,3 +11,4 @@ function formatPhone (phone) {
 
 let baseUrl = 'http://api.truewallet.net/bvCode'
 export { getStore, formatPhone, baseUrl }
+// 'width:'+ ((this.width * 0.85 - 40) * 3/10) + ';height:'+ ((this.width * 0.85 - 40) *0.3) + ';position:absolute' + ';top:' + this.position.y + ';left:' + this.position.x

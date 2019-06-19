@@ -2,6 +2,10 @@
   <div class="withdraw-container">
       <!--图形验证-->
       <Vaptcha v-if="vaptchaStatus" @close="closeChange"></Vaptcha>
+      <!--数字键盘-->
+      <KeyboardNum
+              v-if="keyboardStatus"
+      ></KeyboardNum>
       <div style="display: flex;flex-direction: column;">
           <div class="withdraw-title">
               <img src="../assets/icon-backBlack.png" class="title-img" @click="backChange">
@@ -35,19 +39,25 @@
 
 <script>
 import Vaptcha from '../components/vaptcha'
+import KeyboardNum from '../components/keyboardNum'
 export default {
   name: 'withdraw',
   data () {
     return {
       Nums: '', // input
-      vaptchaStatus: false // 验证码
+      vaptchaStatus: false, // 验证码
+      keyboardStatus: false, // 数字键盘
+      code: '0',
+      inputList: [{val: ''}, {val: ''}, {val: ''}, {val: ''}, {val: ''}, {val: ''}]
     }
   },
   components: {
-    Vaptcha
+    Vaptcha,
+    KeyboardNum
   },
   mounted () {
-    this.vaptchaStatus = true
+    // this.vaptchaStatus = true
+    this.keyboardStatus = true
   },
   methods: {
     backChange () {

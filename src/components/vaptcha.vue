@@ -5,14 +5,16 @@
                <div class="card-title">{{$t('vaptcha.title')}}</div>
                <div class="card-body">
                    <div class="body-title">{{$t('vaptcha.text')}}</div>
-                   <img :src="imgBanner" class="body-img">
-                    <img src="../assets/icon-true.png"
-                         class="body-icon"
-                         id="img"
-                         @mousedown="down" @touchstart="down"
-                         @mousemove="move" @touchmove="move"
-                         @mouseup="end" @touchend="end"
-                        >
+                   <div class="body-img">
+                       <img :src="imgBanner" class="img">
+                       <img src="../assets/icon-true.png"
+                            class="body-icon"
+                            id="img"
+                            @mousedown="down" @touchstart="down"
+                            @mousemove="move" @touchmove="move"
+                            @mouseup="end" @touchend="end"
+                       >
+                   </div>
                </div>
             </div>
             <div class="vaptcha-close" @click="closeChange">
@@ -80,13 +82,22 @@ export default {
       } else {
         touch = event
       }
-      this.position.x = touch.clientX
-      this.position.y = touch.clientY
+      console.log(event.clientX, '测试鼠标按下屏幕可视宽')
+      console.log(event.clientY, '测试鼠标按下屏幕可视高')
+      console.log(touch, 'touch')
+      console.log(moveDiv.offsetLeft, 'offsetLeft,down')
+      console.log(moveDiv.offsetTop, 'offsetTop,down')
+      console.log(touch.clientX, 'px,down')
+      console.log(touch.clientY, 'py,down')
+      console.log(moveDiv.offsetLeft, 'dx,down')
+      console.log(moveDiv.offsetTop, 'dy,down')
+      this.position.x = touch.clientX // 浏览器可视区域clientX
+      this.position.y = touch.clientY // 浏览器可视区域clientY
       this.dx = moveDiv.offsetLeft
       this.dy = moveDiv.offsetTop
     },
     move (event) {
-      console.log(event, 'event')
+      // console.log(event, 'event')
       const moveDiv = document.getElementById('img')
       if (this.flags) {
         let touch
@@ -111,10 +122,12 @@ export default {
     // 鼠标释放时候的函数
     end () {
       this.flags = false
+      console.log(this.xPum, 'x')
+      console.log(this.yPum, 'y')
       axios.post(baseUrl + '/validate', {
         hash: this.hash,
-        x: this.xPum,
-        y: this.yPum
+        x: this.position.x,
+        y: this.position.y
       }).then(res => {
         console.log(res, 'chenhcefen')
       })
@@ -163,7 +176,6 @@ export default {
                     display: flex;
                     flex-direction: column;
                     padding:0px 30px 40px 30px;
-                    position: relative;
                     .body-title{
                         display: flex;
                         flex-direction: row;
@@ -175,6 +187,11 @@ export default {
                         width:550px;
                         height:416px;
                         margin-top:20px;
+                        position: relative;
+                        .img{
+                            width: 100%;
+                            height: 100%
+                        }
                     }
                     .body-icon{
                         width:160px;
