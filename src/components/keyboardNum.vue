@@ -70,7 +70,6 @@
                     </div>
                 </div>
             </div>
-<!--          <NumberKey></NumberKey>-->
         </div>
     </div>
 </template>
@@ -97,8 +96,6 @@ export default {
   props: {
   },
   mounted () {
-    // document.activeElement.blur() // ios隐藏键盘
-    // this.$refs.input.blur() // android隐藏键盘
     this.getCode()
   },
   methods: {

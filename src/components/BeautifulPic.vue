@@ -18,7 +18,7 @@
                    <div class="icon-card">{{$t('pic.InvitationCode')}}</div>
                    <span class="cards">Y 9 8 7 0 9</span>
                </div>
-               <qrcode-vue :value="qrCode" :size="size" level="H" style="width:90px;height:90px;margin-top:25px;"></qrcode-vue>
+               <qrcode-vue :value="qrCode"  level="H" style="width:90px;height:90px;margin-top:25px;"></qrcode-vue>
                <div class="body-bottom">
                    <div class="bottom-color"></div>
                    <span style="padding:0 16px;">{{$t('pic.bottom')}}</span>
