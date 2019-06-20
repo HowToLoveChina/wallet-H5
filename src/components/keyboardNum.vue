@@ -2,7 +2,7 @@
     <div class="num-container">
         <div class="num-body">
            <div class="num-title">
-               <img src="../assets/icon-close2.png" class="title-img">
+               <img src="../assets/icon-close2.png" class="title-img" @click="closeChange">
                <span style="padding-left:135px">{{$t('keyboard.title')}}</span>
            </div>
           <div class="body-inner">
@@ -14,17 +14,37 @@
                   <div class="text-bottom">+86 152****7078</div>
               </div>
               <div  class="inner-input">
-                  <div class="input-num" v-for="(item,index) in 6">
-                      <div  class="input" @keyup="nextFocus($event,index)"
-                            @keydown="changeValue(index)" >
-<!--                          <span>{{item}}</span>-->
-                      </div>
+                  <div class="input-num" :style="inputList[0] ? 'border-bottom: 2px solid #4D51C6' : ''">
+                     <span class="num-span">{{inputList[0]}}</span>
                   </div>
+                  <div class="input-num" :style="inputList[1] ? 'border-bottom: 2px solid #4D51C6' : ''">
+                      <span class="num-span">{{inputList[1]}}</span>
+                  </div>
+                  <div class="input-num" :style="inputList[2] ? 'border-bottom: 2px solid #4D51C6' : ''">
+                      <span class="num-span">{{inputList[2]}}</span>
+                  </div>
+                  <div class="input-num" :style="inputList[3] ? 'border-bottom: 2px solid #4D51C6' : ''">
+                      <span class="num-span">{{inputList[3]}}</span>
+                  </div>
+                  <div class="input-num" :style="inputList[4] ? 'border-bottom: 2px solid #4D51C6' : ''">
+                      <span class="num-span">{{inputList[4]}}</span>
+                  </div>
+                  <div class="input-num" :style="inputList[5] ? 'border-bottom: 2px solid #4D51C6' : ''">
+                      <span class="num-span">{{inputList[5]}}</span>
+                  </div>
+<!--                      <div  class="input" @keyup="nextFocus($event,index)"-->
+<!--                            @keydown="changeValue(index)" >-->
+<!--&lt;!&ndash;                          <span>{{item}}</span>&ndash;&gt;-->
+<!--                      </div>-->
               </div>
-              <div class="inner-time">
-                  <span>{{$t('keyboard.time')}} (60s)</span>
+              <div class="inner-time" >
+                  <span v-if="!timeStatus">{{codeMsg}} ({{countdown}}s)</span>
               </div>
-              <div class="inner-btn">{{$t('keyboard.confim')}}</div>
+              <div class="inner-time" v-if="timeStatus" @click="tryAgain">
+                  <span>{{$t('keyboard.time')}}</span>
+              </div>
+              <div class="inner-btn" v-if="!inputList[5]">{{$t('keyboard.confim')}}</div>
+              <div class="inner-btn2" v-if="inputList[5]">{{$t('keyboard.confim')}}</div>
           </div>
           <div class="key-container" @click.stop='_handleKeyPress'>
                 <div class='key-row'>
@@ -45,8 +65,8 @@
                 <div class='key-row'>
                     <div class='key-cell-null' data-num='-1'></div>
                     <div class='key-cell' data-num='0'>0</div>
-                    <div class='key-cell-null' data-num='D'>
-                        <img src="../assets/icon-delete.png" class="null-img">
+                    <div class='key-cell-null' >
+                        <img src="../assets/icon-delete.png" class="null-img" data-num='10'>
                     </div>
                 </div>
             </div>
@@ -57,16 +77,21 @@
 
 <script>
 import SecurityCode from 'vue-security-code'
-import NumberKey from '../components/NumberKeypad'
 export default {
   name: 'keyboardNum',
   components: {
-    SecurityCode,
-    NumberKey // 数字键盘
+    SecurityCode
   },
   data () {
     return {
-      inputList: []
+      inputList: [], // 数字键盘输入数组
+      timeStatus: false, // 重新发送的时间状态
+      // 倒计时秒数
+      countdown: 60,
+      // 按钮上的文字
+      codeMsg: this.$t('keyboard.time2'), // 已发送
+      // 定时器
+      timer: null
     }
   },
   props: {
@@ -74,8 +99,34 @@ export default {
   mounted () {
     // document.activeElement.blur() // ios隐藏键盘
     // this.$refs.input.blur() // android隐藏键盘
+    this.getCode()
   },
   methods: {
+    getCode () {
+      // 验证码60秒倒计时
+      if (!this.timer) {
+        this.timer = setInterval(() => {
+          if (this.countdown > 0 && this.countdown <= 60) {
+            this.countdown--
+            if (this.countdown !== 0) {
+              this.codeMsg = this.$t('keyboard.time2')
+            } else {
+              clearInterval(this.timer)
+              this.countdown = 60
+              this.timeStatus = true
+              this.timer = null
+            }
+          }
+        }, 1000)
+      }
+    },
+    closeChange () {
+      this.$emit('closeChange')
+    },
+    tryAgain () {
+      this.timeStatus = false
+      this.getCode()
+    },
     nextFocus (el, index) {
       let dom = document.getElementsByClassName('input')
       let currInput = dom[index]
@@ -100,16 +151,16 @@ export default {
     },
     // 处理按键
     _handleKeyPress (e) {
-      console.log(e)
       let num = e.target.dataset.num
-      console.log(num)
+      console.log(e.target.dataset)
+      console.log(num, '测试')
       // 不同按键处理逻辑
       // -1 代表无效按键，直接返回
-      if (num === -1) return false
+      if (num === '-1') return false
       switch (String(num)) {
         // 删除键
-        case 'D':
-          this._handleDeleteKey()
+        case '10':
+          this._handleDeleteKey(num)
           break
         default:
           this._handleNumberKey(num)
@@ -117,15 +168,18 @@ export default {
       }
     },
     // 处理删除键
-    _handleDeleteKey () {
+    _handleDeleteKey (num) {
+      console.log(num)
       // 如果没有输入，直接返回
+      console.log(1)
+      console.log(this.inputList.length)
       if (!this.inputList.length) return false
       // 否则删除最后一个
-      this.inputList = this.inputList.substring(0, this.inputList.length - 1)
+      this.inputList = this.inputList.splice(0, this.inputList.length - 1)
     },
     _handleNumberKey (num) {
-      console.log(num, '时间时间')
-      if (this.inputList.length < 5) {
+      // console.log(num, '时间时间')
+      if (this.inputList.length <= 5) {
         this.inputList.push(num)
       } else {
         this.inputList = []
@@ -210,11 +264,20 @@ export default {
                 flex-direction: row;
                 justify-content: space-around;
                 align-items: center;
+                margin-top:100px;
                 .input-num{
-                    margin-top:50px;
                     width:80px;
                     padding:5px;
-                    border-bottom: 2px solid #4D51C6;
+                    border-bottom: 2px solid #eee;
+                    .num-span{
+                        font-size:30px;
+                        color:#4D51C6;
+                        font-weight: bold;
+                    }
+                }
+                .input-num2{
+                    width:80px;
+                    padding:5px;
                 }
                 .input{
                     width: 40px;
@@ -234,6 +297,19 @@ export default {
                 font-weight: bold;
             }
             .inner-btn{
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                align-items: center;
+                margin: 50px 16px;
+                padding: 30px 0;
+                font-size:30px;
+                color:#fff;
+                background-color: #eee;
+                border-radius:20px;
+                cursor: pointer;
+            }
+            .inner-btn2{
                 display: flex;
                 flex-direction: row;
                 justify-content: center;

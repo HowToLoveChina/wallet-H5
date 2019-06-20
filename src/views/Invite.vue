@@ -144,9 +144,6 @@ export default {
     }
   },
   mounted () {
-    const params = {
-      mobile: '86+18501356720'
-    }
     // login(params).then(res => {
     //   console.log(res, 'llllll')
     // })

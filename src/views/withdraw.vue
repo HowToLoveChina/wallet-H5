@@ -5,6 +5,7 @@
       <!--数字键盘-->
       <KeyboardNum
               v-if="keyboardStatus"
+              @closeChange="keyClose"
       ></KeyboardNum>
       <div style="display: flex;flex-direction: column;">
           <div class="withdraw-title">
@@ -63,8 +64,13 @@ export default {
     backChange () {
       this.$router.go(-1)
     },
+    // 图形验证码关闭
     closeChange () {
       this.vaptchaStatus = false
+    },
+    // 键盘关闭
+    keyClose () {
+      this.keyboardStatus = false
     }
   }
 }
