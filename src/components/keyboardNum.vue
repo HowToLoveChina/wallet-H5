@@ -1,52 +1,53 @@
 <template>
     <div class="num-container">
+        <el-scrollbar>
         <div class="num-body">
-           <div class="num-title">
-               <img src="../assets/icon-close2.png" class="title-img" @click="closeChange">
-               <span style="padding-left:135px">{{$t('keyboard.title')}}</span>
-           </div>
-          <div class="body-inner">
-              <div class="inner-text">
-                  <div class="text-top">
-                      <img src="../assets/icon-mail.png" class="top-img">
-                      <span class="top-span">{{$t('keyboard.text1')}}</span>
-                  </div>
-                  <div class="text-bottom">+86 152****7078</div>
-              </div>
-              <div  class="inner-input">
-                  <div class="input-num" :style="inputList[0] ? 'border-bottom: 2px solid #4D51C6' : ''">
-                     <span class="num-span">{{inputList[0]}}</span>
-                  </div>
-                  <div class="input-num" :style="inputList[1] ? 'border-bottom: 2px solid #4D51C6' : ''">
-                      <span class="num-span">{{inputList[1]}}</span>
-                  </div>
-                  <div class="input-num" :style="inputList[2] ? 'border-bottom: 2px solid #4D51C6' : ''">
-                      <span class="num-span">{{inputList[2]}}</span>
-                  </div>
-                  <div class="input-num" :style="inputList[3] ? 'border-bottom: 2px solid #4D51C6' : ''">
-                      <span class="num-span">{{inputList[3]}}</span>
-                  </div>
-                  <div class="input-num" :style="inputList[4] ? 'border-bottom: 2px solid #4D51C6' : ''">
-                      <span class="num-span">{{inputList[4]}}</span>
-                  </div>
-                  <div class="input-num" :style="inputList[5] ? 'border-bottom: 2px solid #4D51C6' : ''">
-                      <span class="num-span">{{inputList[5]}}</span>
-                  </div>
-<!--                      <div  class="input" @keyup="nextFocus($event,index)"-->
-<!--                            @keydown="changeValue(index)" >-->
-<!--&lt;!&ndash;                          <span>{{item}}</span>&ndash;&gt;-->
-<!--                      </div>-->
-              </div>
-              <div class="inner-time" >
-                  <span v-if="!timeStatus">{{codeMsg}} ({{countdown}}s)</span>
-              </div>
-              <div class="inner-time" v-if="timeStatus" @click="tryAgain">
-                  <span>{{$t('keyboard.time')}}</span>
-              </div>
-              <div class="inner-btn" v-if="!inputList[5]">{{$t('keyboard.confim')}}</div>
-              <div class="inner-btn2" v-if="inputList[5]">{{$t('keyboard.confim')}}</div>
-          </div>
-          <div class="key-container" @click.stop='_handleKeyPress'>
+            <div class="num-title">
+                <img src="../assets/icon-close2.png" class="title-img" @click="closeChange">
+                <span style="padding-left:135px">{{$t('keyboard.title')}}</span>
+            </div>
+            <div class="body-inner">
+                <div class="inner-text">
+                    <div class="text-top">
+                        <img src="../assets/icon-mail.png" class="top-img">
+                        <span class="top-span">{{$t('keyboard.text1')}}</span>
+                    </div>
+                    <div class="text-bottom">+86 152****7078</div>
+                </div>
+                <div  class="inner-input">
+                    <div class="input-num" :style="inputList[0] ? 'border-bottom: 2px solid #4D51C6' : ''">
+                        <span class="num-span">{{inputList[0]}}</span>
+                    </div>
+                    <div class="input-num" :style="inputList[1] ? 'border-bottom: 2px solid #4D51C6' : ''">
+                        <span class="num-span">{{inputList[1]}}</span>
+                    </div>
+                    <div class="input-num" :style="inputList[2] ? 'border-bottom: 2px solid #4D51C6' : ''">
+                        <span class="num-span">{{inputList[2]}}</span>
+                    </div>
+                    <div class="input-num" :style="inputList[3] ? 'border-bottom: 2px solid #4D51C6' : ''">
+                        <span class="num-span">{{inputList[3]}}</span>
+                    </div>
+                    <div class="input-num" :style="inputList[4] ? 'border-bottom: 2px solid #4D51C6' : ''">
+                        <span class="num-span">{{inputList[4]}}</span>
+                    </div>
+                    <div class="input-num" :style="inputList[5] ? 'border-bottom: 2px solid #4D51C6' : ''">
+                        <span class="num-span">{{inputList[5]}}</span>
+                    </div>
+                    <!--                      <div  class="input" @keyup="nextFocus($event,index)"-->
+                    <!--                            @keydown="changeValue(index)" >-->
+                    <!--&lt;!&ndash;                          <span>{{item}}</span>&ndash;&gt;-->
+                    <!--                      </div>-->
+                </div>
+                <div class="inner-time" >
+                    <span v-if="!timeStatus">{{codeMsg}} ({{countdown}}s)</span>
+                </div>
+                <div class="inner-time" v-if="timeStatus" @click="tryAgain">
+                    <span style="color:#4D51C6">{{$t('keyboard.time')}}</span>
+                </div>
+                <div class="inner-btn" v-if="!inputList[5]">{{$t('keyboard.confim')}}</div>
+                <div class="inner-btn2" v-if="inputList[5]">{{$t('keyboard.confim')}}</div>
+            </div>
+            <div class="key-container" @click.stop='_handleKeyPress'>
                 <div class='key-row'>
                     <div class='key-cell' data-num='1'>1</div>
                     <div class='key-cell' data-num='2'>2</div>
@@ -71,6 +72,7 @@
                 </div>
             </div>
         </div>
+        </el-scrollbar>
     </div>
 </template>
 
@@ -199,10 +201,8 @@ export default {
     flex-direction: column;
     justify-content: flex-start;
     flex: auto;
-    align-items: center;
     background: rgba(0, 0, 0, 0.5);
-    width: 100%;
-    height: 100%;
+    align-items: stretch;
     position: fixed;
     top: 0;
     left: 0;
@@ -324,7 +324,6 @@ export default {
             display: flex;
             flex-direction: column;
             width:100%;
-            margin-top:100px;
             background-color: #D2D5DB;
             padding-top:12px;
             .key-row{

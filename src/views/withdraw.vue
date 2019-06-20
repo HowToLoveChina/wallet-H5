@@ -14,14 +14,14 @@
           </div>
           <div class="withdraw-body">
               <div class="body-input">
-                  <el-input :placeholder="$t('withdraw.withdraw')" class="input" v-model="Nums" type="number"></el-input>
+                  <el-input :placeholder="$t('withdraw.withdraw')" class="input" v-model="amountNums" type="number" @change="amountChange"></el-input>
                   <span class="input-text">{{$t('withdraw.balance')}} 10.00 {{$t('Home.True')}}</span>
               </div>
               <div class="body-address">
                   <span>{{$t('withdraw.wallet')}}</span>
                   <span style="padding-left:10px;">True 0xd6b9…795e08</span>
               </div>
-              <div class="body-btn">{{$t('withdraw.title')}}</div>
+              <div class="body-btn" @click="submitChange">{{$t('withdraw.title')}}</div>
               <div class="body-text">
                   <span>{{$t('withdraw.today')}}</span>
                   <span class="text-blue">30</span>
@@ -45,7 +45,7 @@ export default {
   name: 'withdraw',
   data () {
     return {
-      Nums: '', // input
+      amountNums: '', // input
       vaptchaStatus: false, // 验证码
       keyboardStatus: false, // 数字键盘
       code: '0',
@@ -56,11 +56,36 @@ export default {
     Vaptcha,
     KeyboardNum
   },
+  updated () {
+    console.log(this.amountNums)
+    // if (this.amountNums.indexOf('.') === 0 || this.amountNums === '0') {
+    //   this.amountNums = 0.1
+    // }
+  },
   mounted () {
     // this.vaptchaStatus = true
     this.keyboardStatus = true
   },
   methods: {
+    submitChange () {
+      console.log(this.amountNums, '这是提交的')
+      if (this.amountNums === '') {
+        this.amountNums = ''
+        this.$message.error(this.$t('withdraw.errorTip'))
+      } else {
+        const str = this.amountNums.split('.')[1]
+        if (str.length > 5) {
+          this.$message.error(this.$t('withdraw.errorTip2'))
+        }
+      }
+    },
+    amountChange () {
+      // 已经有一个小数点，就不能再输入小数点
+      // 首个输入的是0或“.”,自动补齐为“0.”
+      if (this.amountNums.indexOf('.') === 0 || this.amountNums === '0') {
+        this.amountNums = 0.1
+      }
+    },
     backChange () {
       this.$router.go(-1)
     },

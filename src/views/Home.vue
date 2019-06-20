@@ -82,7 +82,7 @@
 </template>
 
 <script>
-import { formatPhone } from '../utils/index'
+import { formatPhone, formatMail } from '../utils/index'
 import Share from '../components/share'
 import NotInvite from '../components/NotInvite'
 import NotAdd from '../components/NotAdd'
@@ -98,6 +98,7 @@ export default {
   },
   data () {
     return {
+      mail: '18501356720@163.com',
       phone: '18501356720',
       shareStatus: false,
       notInviteStatus: false, // 实名认证
@@ -116,6 +117,7 @@ export default {
   },
   mounted () {
     this.phone = formatPhone(this.phone)
+    this.mail = formatMail(this.mail)
     console.log(this.phone)
   },
   methods: {

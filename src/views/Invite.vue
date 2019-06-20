@@ -1,114 +1,116 @@
 <template>
-    <el-scrollbar style="background-color: #4D51C6">
-        <div class="invite2-container">
-            <div class="invite-top">
-                <div class="logo">
-                    <div class="top-logo">
-                        <img src="../assets/icon-logo.png" class="logo-right">
-                        <div class="logo-left">
-                            <span class="left-title">True</span>
-                            <span class="left-text">{{$t('invite.logoText')}}</span>
+    <div style="display: flex;flex-direction: column;justify-content: space-between">
+        <el-scrollbar style="background-color: #4D51C6">
+            <div class="invite2-container">
+                <div class="invite-top">
+                    <div class="logo">
+                        <div class="top-logo">
+                            <img src="../assets/icon-logo.png" class="logo-right">
+                            <div class="logo-left">
+                                <span class="left-title">True</span>
+                                <span class="left-text">{{$t('invite.logoText')}}</span>
+                            </div>
                         </div>
+                        <el-dropdown  trigger="click">
+                            <div class="top-btn">
+                                <img src="../assets/icon-lang.png" class="btn-img">
+                                <span style="padding-left:5px;">{{$t('invite.lang1')}}</span>
+                            </div>
+                            <el-dropdown-menu slot="dropdown">
+                                <el-dropdown-item>{{$t('invite.lang1')}}</el-dropdown-item>
+                                <el-dropdown-item>{{$t('invite.lang2')}}</el-dropdown-item>
+                                <el-dropdown-item>{{$t('invite.lang3')}}</el-dropdown-item>
+                                <el-dropdown-item>{{$t('invite.lang4')}}</el-dropdown-item>
+                                <el-dropdown-item>{{$t('invite.lang5')}}</el-dropdown-item>
+                                <el-dropdown-item>{{$t('invite.lang6')}}</el-dropdown-item>
+                            </el-dropdown-menu>
+                        </el-dropdown>
                     </div>
-                    <el-dropdown  trigger="click">
-                        <div class="top-btn">
-                            <img src="../assets/icon-lang.png" class="btn-img">
-                            <span style="padding-left:5px;">{{$t('invite.lang1')}}</span>
-                        </div>
-                        <el-dropdown-menu slot="dropdown">
-                            <el-dropdown-item>{{$t('invite.lang1')}}</el-dropdown-item>
-                            <el-dropdown-item>{{$t('invite.lang2')}}</el-dropdown-item>
-                            <el-dropdown-item>{{$t('invite.lang3')}}</el-dropdown-item>
-                            <el-dropdown-item>{{$t('invite.lang4')}}</el-dropdown-item>
-                            <el-dropdown-item>{{$t('invite.lang5')}}</el-dropdown-item>
-                            <el-dropdown-item>{{$t('invite.lang6')}}</el-dropdown-item>
-                        </el-dropdown-menu>
-                    </el-dropdown>
-                </div>
-                <div class="top-text">
-                    <span>{{$t('invite.logoText2')}}</span>
-                    <span style="padding-top:17px;">TRUE</span>
-                </div>
-            </div>
-            <div class="invite-body">
-                <div class="body-form">
-                    <div class="form-text">
-                        <span class="text-blue">Ryan梅</span>
-                        <span class="text">{{$t('invite.formText')}}</span>
-                    </div>
-                    <div class="form-body">
-                        <div class="body-bar">
-                            <!--邮箱注册-->
-                            <div class="bar-list" @click="barChange(1)">
-                                <span :class="barPhone ? 'blue' : ''" :style="barMail? 'padding-bottom:8px;' : ''">{{$t('invite.register')}}</span>
-                                <div class="list-blue" v-if="barPhone"></div>
-                            </div>
-                            <!--手机注册-->
-                            <div class="bar-list margin" @click="barChange(2)">
-                                <span :class="barMail ? 'blue' : ''" :style="barPhone ? 'padding-bottom:8px;' : ''">{{$t('invite.register2')}}</span>
-                                <div class="list-blue" v-if="barMail"></div>
-                            </div>
-                        </div>
-                        <div class="bar-phone">
-                            <!--邮箱-->
-                            <div class="phone-input" v-if="barPhone">
-                                <el-input v-model="form.email" :placeholder="$t('invite.email')"></el-input>
-                            </div>
-                            <!--手机号-->
-                            <div class="phone-input" v-if="barMail">
-                                <el-input v-model="form.areaCode" style="width:120px;"></el-input>
-                                <div class="input-color"></div>
-                                <el-input v-model="form.phone" :placeholder="$t('invite.phone')"></el-input>
-                            </div>
-                            <!--邮箱验证码-->
-                            <div class="phone-input margin" v-if="barPhone">
-                                <el-input v-model="form.mailCode" :placeholder="$t('invite.emailCode')" style="width:180px"></el-input>
-                                <div class="input-color"></div>
-                                <span class="input-text">{{$t('invite.getCode')}}</span>
-                            </div>
-                            <!--手机验证码-->
-                            <div class="phone-input margin" v-if="barMail">
-                                <el-input v-model="form.phoneCode" :placeholder="$t('invite.phoneCode')" style="width:180px"></el-input>
-                                <div class="input-color"></div>
-                                <span class="input-text">{{$t('invite.getCode')}}</span>
-                            </div>
-                            <!--密码-->
-                            <div class="phone-input margin">
-                                <el-input v-model="form.password" :placeholder="$t('invite.password')"></el-input>
-                            </div>
-                            <!--确认密码-->
-                            <div class="phone-input margin">
-                                <el-input v-model="form.confimPassword" :placeholder="$t('invite.confim')"></el-input>
-                            </div>
-                            <div class="form-btn">{{$t('invite.submit')}}</div>
-                        </div>
-                        <div class="body-text">
-                            <span>点击注册即表示同意</span>
-                            <span class="text-blue">{{$t('invite.tip')}}</span>
-                        </div>
+                    <div class="top-text">
+                        <span>{{$t('invite.logoText2')}}</span>
+                        <span style="padding-top:17px;">TRUE</span>
                     </div>
                 </div>
+                <div class="invite-body">
+                    <div class="body-form">
+                        <div class="form-text">
+                            <span class="text-blue">Ryan梅</span>
+                            <span class="text">{{$t('invite.formText')}}</span>
+                        </div>
+                        <div class="form-body">
+                            <div class="body-bar">
+                                <!--邮箱注册-->
+                                <div class="bar-list" @click="barChange(1)">
+                                    <span :class="barPhone ? 'blue' : ''" :style="barMail? 'padding-bottom:8px;' : ''">{{$t('invite.register')}}</span>
+                                    <div class="list-blue" v-if="barPhone"></div>
+                                </div>
+                                <!--手机注册-->
+                                <div class="bar-list margin" @click="barChange(2)">
+                                    <span :class="barMail ? 'blue' : ''" :style="barPhone ? 'padding-bottom:8px;' : ''">{{$t('invite.register2')}}</span>
+                                    <div class="list-blue" v-if="barMail"></div>
+                                </div>
+                            </div>
+                            <div class="bar-phone">
+                                <!--邮箱-->
+                                <div class="phone-input" v-if="barPhone">
+                                    <el-input v-model="form.email" :placeholder="$t('invite.email')"></el-input>
+                                </div>
+                                <!--手机号-->
+                                <div class="phone-input" v-if="barMail">
+                                    <el-input v-model="form.areaCode" style="width:120px;"></el-input>
+                                    <div class="input-color"></div>
+                                    <el-input v-model="form.phone" :placeholder="$t('invite.phone')"></el-input>
+                                </div>
+                                <!--邮箱验证码-->
+                                <div class="phone-input margin" v-if="barPhone">
+                                    <el-input v-model="form.mailCode" :placeholder="$t('invite.emailCode')" style="width:180px"></el-input>
+                                    <div class="input-color"></div>
+                                    <span class="input-text">{{$t('invite.getCode')}}</span>
+                                </div>
+                                <!--手机验证码-->
+                                <div class="phone-input margin" v-if="barMail">
+                                    <el-input v-model="form.phoneCode" :placeholder="$t('invite.phoneCode')" style="width:180px"></el-input>
+                                    <div class="input-color"></div>
+                                    <span class="input-text">{{$t('invite.getCode')}}</span>
+                                </div>
+                                <!--密码-->
+                                <div class="phone-input margin">
+                                    <el-input v-model="form.password" :placeholder="$t('invite.password')"></el-input>
+                                </div>
+                                <!--确认密码-->
+                                <div class="phone-input margin">
+                                    <el-input v-model="form.confimPassword" :placeholder="$t('invite.confim')"></el-input>
+                                </div>
+                                <div class="form-btn">{{$t('invite.submit')}}</div>
+                            </div>
+                            <div class="body-text">
+                                <span>点击注册即表示同意</span>
+                                <span class="text-blue">{{$t('invite.tip')}}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
-        <div class="invite-bottom">
-            <img src="../assets/icon-we.png" class="title-img">
-            <div class="bottom-list">
-                <img src="../assets/icon-bottom1.png" class="list-img">
-                <div class="list-text1">{{$t('invite.text1-1')}}</div>
-                <div class="list-text2">{{$t('invite.text1-2')}}</div>
+            <div class="invite-bottom">
+                <img src="../assets/icon-we.png" class="title-img">
+                <div class="bottom-list">
+                    <img src="../assets/icon-bottom1.png" class="list-img">
+                    <div class="list-text1">{{$t('invite.text1-1')}}</div>
+                    <div class="list-text2">{{$t('invite.text1-2')}}</div>
+                </div>
+                <div class="bottom-list">
+                    <img src="../assets/icon-bottom2.png" class="list-img">
+                    <div class="list-text1">{{$t('invite.text2-1')}}</div>
+                    <div class="list-text2">{{$t('invite.text2-2')}}</div>
+                </div>
+                <div class="bottom-list">
+                    <img src="../assets/icon-bottom3.png" class="list-img">
+                    <div class="list-text1">{{$t('invite.text3-1')}}</div>
+                    <div class="list-text2">{{$t('invite.text3-2')}}</div>
+                </div>
             </div>
-            <div class="bottom-list">
-                <img src="../assets/icon-bottom2.png" class="list-img">
-                <div class="list-text1">{{$t('invite.text2-1')}}</div>
-                <div class="list-text2">{{$t('invite.text2-2')}}</div>
-            </div>
-            <div class="bottom-list">
-                <img src="../assets/icon-bottom3.png" class="list-img">
-                <div class="list-text1">{{$t('invite.text3-1')}}</div>
-                <div class="list-text2">{{$t('invite.text3-2')}}</div>
-            </div>
-        </div>
-        <div class="invite-app" v-if="appStatus">
+        </el-scrollbar>
+        <div class="invite-app" v-if="appStatus" style="position: fixed">
             <div class="app-close">
                 <img src="../assets/icon-close.png" class="close-img" @click="closeChange">
             </div>
@@ -121,7 +123,7 @@
             </div>
 
         </div>
-    </el-scrollbar>
+    </div>
 </template>
 
 <script>
@@ -407,6 +409,9 @@ export default {
       display: flex;
       flex-direction: column;
       background-color: #fff;
+      position: fixed;
+      width:100%;
+      top:85%;
       .app-close{
           display: flex;
           flex-direction: row;
