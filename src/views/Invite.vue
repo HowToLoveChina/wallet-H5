@@ -1,5 +1,6 @@
 <template>
     <div style="display: flex;flex-direction: column;justify-content: space-between">
+      <Vaptcha v-if="vaptchaStatus" @close="codeCloseChange"></Vaptcha>
         <el-scrollbar style="background-color: #4D51C6">
             <div class="invite2-container">
                 <div class="invite-top">
@@ -57,19 +58,19 @@
                                 </div>
                                 <!--手机号-->
                                 <div class="phone-input" v-if="barMail">
-                                    <el-input v-model="form.areaCode" style="width:120px;"></el-input>
+                                    <el-input v-model="form.areaCode" style="width:120px;" readonly></el-input>
                                     <div class="input-color"></div>
                                     <el-input v-model="form.phone" :placeholder="$t('invite.phone')"></el-input>
                                 </div>
                                 <!--邮箱验证码-->
                                 <div class="phone-input margin" v-if="barPhone">
-                                    <el-input v-model="form.mailCode" :placeholder="$t('invite.emailCode')" style="width:180px"></el-input>
+                                    <el-input v-model="form.Code" :placeholder="$t('invite.emailCode')" style="width:180px"></el-input>
                                     <div class="input-color"></div>
-                                    <span class="input-text">{{$t('invite.getCode')}}</span>
+                                    <span class="input-text" @click="codeChange">{{$t('invite.getCode')}}</span>
                                 </div>
                                 <!--手机验证码-->
                                 <div class="phone-input margin" v-if="barMail">
-                                    <el-input v-model="form.phoneCode" :placeholder="$t('invite.phoneCode')" style="width:180px"></el-input>
+                                    <el-input v-model="form.Code" :placeholder="$t('invite.phoneCode')" style="width:180px"></el-input>
                                     <div class="input-color"></div>
                                     <span class="input-text">{{$t('invite.getCode')}}</span>
                                 </div>
@@ -81,7 +82,7 @@
                                 <div class="phone-input margin">
                                     <el-input v-model="form.confimPassword" :placeholder="$t('invite.confim')"></el-input>
                                 </div>
-                                <div class="form-btn">{{$t('invite.submit')}}</div>
+                                <div class="form-btn" @click="submitChange">{{$t('invite.submit')}}</div>
                             </div>
                             <div class="body-text">
                                 <span>点击注册即表示同意</span>
@@ -119,7 +120,7 @@
                     <img src="../assets/icon-app.png" class="left-img">
                     <span style="padding-left:10px;padding-top:15px;">True</span>
                 </div>
-                <div class="app-btn">{{$t('invite.app')}}</div>
+                <div class="app-btn" >{{$t('invite.app')}}</div>
             </div>
 
         </div>
@@ -127,22 +128,29 @@
 </template>
 
 <script>
+import { baseUrl } from '../utils/index'
+import axios from 'axios'
+import Vaptcha from '../components/vaptcha'
 export default {
   name: 'inviteActivity',
+  components: {
+    Vaptcha
+  },
   data () {
     return {
-      barPhone: true,
       barMail: false,
+      barPhone: true,
       form: {
         email: '', //  邮箱
         phone: '', //  手机号
-        mailCode: '', //  邮箱验证码
-        phoneCode: '', //  手机验证码
+        Code: '', //  邮箱验证码
+        // Code: '', //  手机验证码
         password: '', //  密码
         confimPassword: '', //  确认密码
         areaCode: '+86' // 区号
       },
-      appStatus: true
+      appStatus: true,
+      vaptchaStatus: false // 验证码code
     }
   },
   mounted () {
@@ -166,7 +174,54 @@ export default {
     },
     closeChange () {
       this.appStatus = false
+    },
+    submitChange () {
+      console.log(11)
+      //  注册分为两个接口 1：先登陆验证登陆验证码 2：设置密码
+      console.log(this.form.phone)
+      if (this.barPhone && !this.form.email) {
+        this.$message.warning(this.$t('invite.emailTip'))
+        return false
+      }
+      if (this.barMail && !this.form.phone) {
+        this.$message.warning(this.$t('invite.phoneTip'))
+        return false
+      }
+      if (this.barMail && !this.form.Code) {
+        this.$message.warning(this.$t('invite.codeTipsPhone'))
+        return false
+      }
+      if (this.barPhone && !this.form.Code) {
+        this.$message.warning(this.$t('invite.codeTipsMail'))
+        return false
+      }
+      if (!this.form.password) {
+        this.$message.warning(this.$t('invite.passwordTip'))
+        return false
+      }
+      if (!this.form.confimPassword) {
+        this.$message.warning(this.$t('invite.confimPasswordTip'))
+        return false
+      }
+      if (this.form.password !== this.form.confimPassword) {
+        this.$message.warning(this.$t('invite.PasswordTips'))
+        return false
+      }
+      const params = {
+        phone: this.form.phone,
+        code: this.form.Code
+      }
+      axios.post(baseUrl + '/user/login', params).then(res => {
+        console.log(res, '这是res')
+      })
+    },
+    codeChange () {
+      this.vaptchaStatus = true
+    },
+    codeCloseChange () {
+      this.vaptchaStatus = false
     }
+
   }
 }
 </script>
@@ -337,6 +392,7 @@ export default {
                           color:#444;
                           font-size:24px;
                           padding-left:20px;
+                          cursor: pointer;
                       }
                   }
                   .margin{

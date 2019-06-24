@@ -24,6 +24,7 @@ function formatMail (email) {
   return newEmail
 }
 
-let baseUrl = 'http://api.truewallet.net/bvCode'
-export { getStore, formatPhone, baseUrl, formatMail }
+let baseUrl = 'http://api.truewallet.net/'
+let baseUrl2 = '192.168.46.43/'
+export { getStore, formatPhone, baseUrl, baseUrl2, formatMail }
 // 'width:'+ ((this.width * 0.85 - 40) * 3/10) + ';height:'+ ((this.width * 0.85 - 40) *0.3) + ';position:absolute' + ';top:' + this.position.y + ';left:' + this.position.x

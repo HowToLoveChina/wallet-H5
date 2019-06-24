@@ -56,17 +56,13 @@ export default {
     this.getBanner()
     this.width = document.documentElement.clientWidth
     this.height = document.documentElement.clientHeight
-    this.iconHeight = this.width * 0.85 - 40
-    this.iconWidth = (this.width * 0.85 - 40) * 0.75
-    console.log(this.width, this.height)
-    console.log(this.iconHeight, this.iconWidth)
   },
   methods: {
     closeChange () {
       this.$emit('close')
     },
     getBanner () {
-      axios.post(baseUrl + '/generate', {phone: this.phone}).then(res => {
+      axios.post(baseUrl + 'bvCode/generate', {phone: this.phone}).then(res => {
         console.log(res)
         this.imgBanner = res.data.img
         this.hash = res.data.hash
@@ -122,9 +118,9 @@ export default {
     // 鼠标释放时候的函数
     end () {
       this.flags = false
-      console.log(this.xPum, 'x')
-      console.log(this.yPum, 'y')
-      axios.post(baseUrl + '/validate', {
+      // console.log(this.xPum, 'x')
+      // console.log(this.yPum, 'y')
+      axios.post(baseUrl + 'bvCode/validate', {
         hash: this.hash,
         x: this.position.x,
         y: this.position.y
